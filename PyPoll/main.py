@@ -39,22 +39,32 @@ with open(csvpath) as csvfile:
         # Otherwise, update the vote count for the existing candidate
             candidates[candidate]["numVotes"] = candidates[candidate]["numVotes"] + 1
 
-print("Election Results")
-print("-------------------------")
+#output table variable
+output=(f"Election Results\n"
+     f"-------------------------\n"
+     f"Total Votes: {totalVotes}\n" 
+     f"-------------------------\n"
+)
 
-print(f"Total Votes: {totalVotes}")
-print("-------------------------")
 
 # Iterate through candidates dictionary
 for key in candidates:
     percentageOfVotes = round((candidates[key]['numVotes'] / totalVotes) * 100, 3)
-    print(f"{key}: {percentageOfVotes}% ({candidates[key]['numVotes']})")
+    output = output + f"{key}: {percentageOfVotes}% ({candidates[key]['numVotes']})\n"
 
     # To determine the winner candidate
     if candidates[key]['numVotes'] > greatestVotes:
         greatestVotes = candidates[key]['numVotes']
         winnerCandidate = key
 
-print("-------------------------")
-print(f"Winner: {winnerCandidate}")
-print("-------------------------")
+output = (f"{output}"
+    f"-------------------------\n"
+    f"Winner: {winnerCandidate}\n" 
+    f"-------------------------\n"  
+) 
+
+print(f"{output}")
+
+output_textfile=open("analysis/output_textfile.txt", "w")
+output_textfile.write(output)
+output_textfile.close()

@@ -57,10 +57,18 @@ with open(csvpath) as csvfile:
 # Calculate the average change
 averageChange = round(totalPeriodChanges / (totalMonths-1), 2)
 
-print("Financial Analysis")
-print("----------------------------")
-print(f"Total Months: {totalMonths}")
-print(f"Total: ${netTotalAmount}")
-print(f"Average Change: ${averageChange}")
-print(f"Greatest Increase in Profits: {greatestProfitIncreasePeriod} (${greatestProfitIncrease})")
-print(f"Greatest Decrease in Profits: {greatestProfitDecreasePeriod} (${greatestProfitDecrease})")
+output=(
+    f"Financial Analysis\n"
+    f"----------------------------\n"
+    f"Total Months: {totalMonths}\n"
+    f"Total: ${netTotalAmount}\n"
+    f"Average Change: ${averageChange}\n"
+    f"Greatest Increase in Profits: {greatestProfitIncreasePeriod} (${greatestProfitIncrease})\n"
+    f"Greatest Decrease in Profits: {greatestProfitDecreasePeriod} (${greatestProfitDecrease})\n"
+)
+
+print(output)
+
+output_textfile=open("analysis/output_textfile.txt", "w")
+output_textfile.write(output)
+output_textfile.close()
